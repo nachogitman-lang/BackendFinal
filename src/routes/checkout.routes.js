@@ -38,9 +38,9 @@ router.post('/create-preference', async (req, res) => {
                 items: itemsToPay,
                 
                 backUrls: {
-                    success: 'http://localhost:5173/',     
-                    failure: 'http://localhost:5173/cart', 
-                    pending: 'http://localhost:5173/',
+                 success: 'https://frontend-final-g8p3i9fld-nachogitman-langs-projects.vercel.app/', 
+                 failure: 'https://frontend-final-g8p3i9fld-nachogitman-langs-projects.vercel.app/cart',
+                 pending: 'https://frontend-final-g8p3i9fld-nachogitman-langs-projects.vercel.app/',
                 },
                 
                 autoReturn: 'approved', 
