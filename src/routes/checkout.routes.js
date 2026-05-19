@@ -38,10 +38,10 @@ router.post('/create-preference', async (req, res) => {
                 items: itemsToPay,
                 
                 backUrls: {
-                 success: 'https://frontend-final-g8p3i9fld-nachogitman-langs-projects.vercel.app/', 
-                 failure: 'https://frontend-final-g8p3i9fld-nachogitman-langs-projects.vercel.app/cart',
-                 pending: 'https://frontend-final-g8p3i9fld-nachogitman-langs-projects.vercel.app/',
-                },
+                success: 'https://frontend-final-ecru.vercel.app/', 
+                failure: 'https://frontend-final-ecru.vercel.app/cart',
+                pending: 'https://frontend-final-ecru.vercel.app/',
+},
                 
                 autoReturn: 'approved', 
             }
