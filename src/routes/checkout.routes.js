@@ -16,47 +16,42 @@ router.post('/create-preference', async (req, res) => {
     try {
         const { items } = req.body;
 
-       
         if (!items || items.length === 0) {
             return res.status(400).json({ message: "El carrito está vacío" });
         }
 
-        
         const itemsToPay = items.map(item => ({
             id: String(item._id),
             title: String(item.nombre).trim(),
-            unit_price: parseFloat(Number(item.precio).toFixed(2)), 
-            quantity: parseInt(item.cantidad, 10),                
-            currency_id: 'ARS'      
+            unit_price: parseFloat(Number(item.precio).toFixed(2)),
+            quantity: parseInt(item.cantidad, 10),
+            currency_id: 'ARS'
         }));
 
         const preference = new Preference(client);
 
-        
         const response = await preference.create({
             body: {
                 items: itemsToPay,
-                
                 backUrls: {
-                success: 'https://frontend-final-ecru.vercel.app/', 
-                failure: 'https://frontend-final-ecru.vercel.app/cart',
-                pending: 'https://frontend-final-ecru.vercel.app/',
-},
-                
-                autoReturn: 'approved', 
+                    success: 'https://frontend-final-ecru.vercel.app/', 
+                    failure: 'https://frontend-final-ecru.vercel.app/cart',
+                    pending: 'https://frontend-final-ecru.vercel.app/',
+                },
+                autoReturn: 'approved',
             }
         });
 
-       
-        res.status(200).json({ 
-            id: response.id, 
-            init_point: response.init_point 
-        });
+        // Devolvemos la respuesta correcta con el ID de la preferencia
+        return res.json({ id: response.id });
 
     } catch (error) {
-        console.error("Error al crear la preferencia de Mercado Pago:", error);
-        res.status(500).json({ 
-            message: "Error interno al procesar el pago",
+
+        console.error("🔴 ERROR DETALLADO DE MERCADO PAGO:", error);
+        
+
+        return res.status(500).json({ 
+            message: "Error interno en el servidor", 
             error: error.message 
         });
     }
